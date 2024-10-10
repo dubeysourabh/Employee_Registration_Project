@@ -1,143 +1,110 @@
-﻿@model Universal_Task.Models.Employee_Table
+﻿@model Universal_Task.Models.Login_Table
 
 @{
     ViewBag.Title = "Create";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Registration</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        /* Custom styles for login form and background */
-        body {
-            background-image: url('path/to/your/image.jpg');
-            background-image: url('../../image/aaa.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 100vh;
-            font-family: Arial, sans-serif;
+<h2 style="text-align: center;">Create</h2>
+
+<link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+
+<style>
+
+    /* Style the form */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the labels and headings */
+    h3 {
+        font-family: Arial, sans-serif;
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    /* Style the input fields */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0 20px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    /* Style the submit button */
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
         }
 
-        .card {
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
+    /* Add spacing between form elements */
+    div {
+        margin-bottom: 20px;
+    }
+</style>
 
-        .card-body {
-            padding: 2rem;
-        }
+<p style="text-align: center;">
+    @Html.ActionLink("Go To Index Page", "Index")
+</p>
 
-        .form-control {
-            border-radius: 0.5rem;
-        }
+@using (Html.BeginForm("Create", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div>
+    @Html.HiddenFor(model => model.Id)
 
-        .btn-login {
-            border-radius: 0.5rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-body">
-                        <h3 class="text-center mb-4">Edit Registration</h3>
-                        @using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h3> UserName </h3>
+    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Enter your name" })
+    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
 
-                            <div class="form-group">
-                                @Html.HiddenFor(m => m.EmpId)
+    <h3> EmailId </h3>
+    @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", placeholder = "Enter your email address" })
+    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
 
-                                <div class="form-group">
-                                    <label for="UserName">Name</label>
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @required = "required" })
-                                </div>
+    <h3> MobileNo </h3>
+    @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", placeholder = "Enter your mobile number" })
+    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
 
-                                <div class="form-group">
-                                    <label for="Address">Address</label>
-                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @required = "required" })
-                                </div>
+    <h3> UniqueCode </h3>
+    @Html.TextBoxFor(model => model.UniqueCode, new { @class = "form-control", placeholder = "Enter your unique code" })
+    @Html.ValidationMessageFor(model => model.UniqueCode, "", new { @class = "text-danger" })
 
-                                <div class="form-group">
-                                    <label for="State">State</label>
-                                    @Html.DropDownList("StateCode", null, "Select State", new { @id = "StateCode", @name = "StateCode", @class = "form-control" })
-                                </div>
+    <h3> Status </h3>
+    @Html.TextBoxFor(model => model.Status, new { @class = "form-control", placeholder = "Enter your status" })
+    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
 
-                                <div class="form-group">
-                                    <label for="CityId">City</label>
-                                    @Html.DropDownList("CityCode", null, "Select City", new { @id = "CityCode", @name = "CityCode", @class = "form-control" })
-                                </div>
+    <h3> Password </h3>
+    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Enter your password" })
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 
-                                <div class="form-group">
-                                    <label for="DoB">DoB</label>
-                                    @Html.TextBoxFor(m => m.DoB, new { @class = "form-control", type = "date", @required = "required" })
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="UniqueCode">Unique Code</label>
-                                    @Html.TextBoxFor(m => m.UniqueCode, new { @class = "form-control", @required = "required" })
-                                </div>
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</div>
+}
 
-                                <div class="form-group">
-                                    <label for="Date">Date</label>
-                                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", type = "date", @required = "required" })
-                                </div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
 
-                                <div class="form-group">
-                                    <label for="Image">Image</label>
-                                    <input type="file" name="ImageFile" class="form-control" />
-                                    @if (Model.Image != null)
-                                    {
-                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="Employee Image" style="width: 100px; height: 100px;" />
-                                    }
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Password">Password</label>
-                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @required = "required" })
-                                </div>
-
-                                <button type="submit" class="btn btn-primary mt-3">Register</button>
-                            </div>
-                        }
-                        <div id="errorMessage" class="text-danger mt-3"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Custom JavaScript for form submission and error message display -->
-    <script>
-        $(document).ready(function () {
-            $('#loginForm').submit(function (e) {
-                e.preventDefault(); // Prevent form submission
-
-                var formData = $(this).serialize(); // Serialize form data
-                $.post($(this).attr('action'), formData)
-                    .done(function (response) {
-                        // Successful login, redirect or handle as needed
-                        window.location.href = response.redirectUrl;
-                    })
-                    .fail(function (xhr) {
-                        // Login failed, display error message
-                        $('#errorMessage').text(xhr.responseJSON.errorMessage);
-                    });
-            });
-        });
-    </script>
-</body>
-</html>
+}
 
