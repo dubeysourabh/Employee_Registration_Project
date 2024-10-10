@@ -1,1 +1,4 @@
 # Employee_Registration_Project
+Use technology :- Asp.net(MVC Framework) Html,Css, jquery, Entity Framework and microsoft sql server
+Description :- The Employee Registration project is a web-based application designed to manage employee data efficiently. Built using the ASP.NET MVC framework, it leverages Entity Framework for database interactions, allowing for smooth CRUD operations (Create, Read, Update, Delete) on employee records. The application’s front end is developed using HTML, CSS, and jQuery to provide a user-friendly interface with features such as form validation and dynamic content updates. It integrates Microsoft SQL Server as the backend database, ensuring data integrity and security. The project enables streamlined employee registration, record management, and searching capabilities, aimed at simplifying human resource operations.
+use database :- microsoft sql server create table ,view and use stored procedure.
