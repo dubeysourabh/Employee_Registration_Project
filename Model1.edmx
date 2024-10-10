@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UniversalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City_Table">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateCode" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee_Table">
+          <Key>
+            <PropertyRef Name="EmpId" />
+          </Key>
+          <Property Name="EmpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoB" Type="nvarchar" MaxLength="50" />
+          <Property Name="UniqueCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityCode" Type="int" />
+          <Property Name="StateCode" Type="int" />
+        </EntityType>
+        <EntityType Name="Login_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="UniqueCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProfessionalDetail_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeePFNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary" Type="nvarchar" MaxLength="50" />
+          <Property Name="MarrigeAnniversaryDate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="State_Table">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateCode" Type="int" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Universal.dbo.final_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="final_View">
+          <Key>
+            <PropertyRef Name="EmpId" />
+            <PropertyRef Name="CityId" />
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateCode" Type="int" />
+          <Property Name="CityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr1" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr2" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoB" Type="nvarchar" MaxLength="50" />
+          <Property Name="UniqueCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr3" Type="int" />
+          <Property Name="Expr4" Type="int" />
+          <Property Name="EmpId" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="AddEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="DoB" Type="date" Mode="In" />
+          <Parameter Name="UniqueCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Image" Type="image" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="CityId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetEmployeeById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="DoB" Type="date" Mode="In" />
+          <Parameter Name="UniqueCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Image" Type="image" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="CityId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="UniversalModelStoreContainer">
+          <EntitySet Name="City_Table" EntityType="Self.City_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_Table" EntityType="Self.Employee_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login_Table" EntityType="Self.Login_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfessionalDetail_Table" EntityType="Self.ProfessionalDetail_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State_Table" EntityType="Self.State_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="final_View" EntityType="Self.final_View" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [final_View].[StateName] AS [StateName], 
+    [final_View].[StateCode] AS [StateCode], 
+    [final_View].[CityCode] AS [CityCode], 
+    [final_View].[CityName] AS [CityName], 
+    [final_View].[Expr1] AS [Expr1], 
+    [final_View].[UserName] AS [UserName], 
+    [final_View].[Address] AS [Address], 
+    [final_View].[Expr2] AS [Expr2], 
+    [final_View].[State] AS [State], 
+    [final_View].[DoB] AS [DoB], 
+    [final_View].[UniqueCode] AS [UniqueCode], 
+    [final_View].[Date] AS [Date], 
+    [final_View].[Image] AS [Image], 
+    [final_View].[Password] AS [Password], 
+    [final_View].[Expr3] AS [Expr3], 
+    [final_View].[Expr4] AS [Expr4], 
+    [final_View].[EmpId] AS [EmpId], 
+    [final_View].[CityId] AS [CityId], 
+    [final_View].[StateId] AS [StateId]
+    FROM [dbo].[final_View] AS [final_View]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UniversalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ProfessionalDetail_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeePFNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MarrigeAnniversaryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="UniversalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProfessionalDetail_Table" EntityType="Self.ProfessionalDetail_Table" />
+          <FunctionImport Name="AddEmployee">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="DoB" Mode="In" Type="DateTime" />
+            <Parameter Name="UniqueCode" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Image" Mode="In" Type="Binary" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="CityId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteEmployee">
+          <Parameter Name="EmpId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllEmployees" ReturnType="Collection(UniversalModel.GetAllEmployees_Result)" />
+          <FunctionImport Name="GetEmployeeById" ReturnType="Collection(UniversalModel.GetEmployeeById_Result)">
+          <Parameter Name="EmpId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateEmployee">
+            <Parameter Name="EmpId" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="DoB" Mode="In" Type="DateTime" />
+            <Parameter Name="UniqueCode" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Image" Mode="In" Type="Binary" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="CityId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Login_Table" EntityType="UniversalModel.Login_Table" />
+          <EntitySet Name="City_Table" EntityType="UniversalModel.City_Table" />
+          <EntitySet Name="Employee_Table" EntityType="UniversalModel.Employee_Table" />
+          <EntitySet Name="State_Table" EntityType="UniversalModel.State_Table" />
+          <EntitySet Name="final_View" EntityType="UniversalModel.final_View" />
+        </EntityContainer>
+        <ComplexType Name="GetAllEmployees_Result">
+          <Property Type="Int32" Name="EmpId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DoB" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="Binary" Name="Image" Nullable="true" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CityId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetEmployeeById_Result">
+          <Property Type="Int32" Name="EmpId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DoB" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="Binary" Name="Image" Nullable="true" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CityId" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Login_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="City_Table">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Employee_Table">
+          <Key>
+            <PropertyRef Name="EmpId" />
+          </Key>
+          <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityCode" Type="Int32" />
+          <Property Name="StateCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="State_Table">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateCode" Type="Int32" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="final_View">
+          <Key>
+            <PropertyRef Name="EmpId" />
+            <PropertyRef Name="CityId" />
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="Int32" />
+          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expr1" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expr3" Type="Int32" />
+          <Property Name="Expr4" Type="Int32" />
+          <Property Name="EmpId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UniversalModelStoreContainer" CdmEntityContainer="UniversalEntities">
+          <EntitySetMapping Name="ProfessionalDetail_Table">
+            <EntityTypeMapping TypeName="UniversalModel.ProfessionalDetail_Table">
+              <MappingFragment StoreEntitySet="ProfessionalDetail_Table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeePFNo" ColumnName="EmployeePFNo" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="MarrigeAnniversaryDate" ColumnName="MarrigeAnniversaryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEmployee" FunctionName="UniversalModel.Store.AddEmployee" />
+          <FunctionImportMapping FunctionImportName="DeleteEmployee" FunctionName="UniversalModel.Store.DeleteEmployee" />
+          <FunctionImportMapping FunctionImportName="GetAllEmployees" FunctionName="UniversalModel.Store.GetAllEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UniversalModel.GetAllEmployees_Result">
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmployeeById" FunctionName="UniversalModel.Store.GetEmployeeById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UniversalModel.GetEmployeeById_Result">
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateEmployee" FunctionName="UniversalModel.Store.UpdateEmployee" />
+          <EntitySetMapping Name="Login_Table">
+            <EntityTypeMapping TypeName="UniversalModel.Login_Table">
+              <MappingFragment StoreEntitySet="Login_Table">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City_Table">
+            <EntityTypeMapping TypeName="UniversalModel.City_Table">
+              <MappingFragment StoreEntitySet="City_Table">
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_Table">
+            <EntityTypeMapping TypeName="UniversalModel.Employee_Table">
+              <MappingFragment StoreEntitySet="Employee_Table">
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State_Table">
+            <EntityTypeMapping TypeName="UniversalModel.State_Table">
+              <MappingFragment StoreEntitySet="State_Table">
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="final_View">
+            <EntityTypeMapping TypeName="UniversalModel.final_View">
+              <MappingFragment StoreEntitySet="final_View">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UniqueCode" ColumnName="UniqueCode" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
