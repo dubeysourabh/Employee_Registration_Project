@@ -1,4 +1,4 @@
-﻿@model Universal_Task.Models.Login_Table
+﻿@model Universal_Task.Models.ProfessionalDetail_Table
 
 @{
     ViewBag.Title = "Create";
@@ -66,45 +66,36 @@
 <p style="text-align: center;">
     @Html.ActionLink("Go To Index Page", "Index")
 </p>
-
-@using (Html.BeginForm("Create", "Login", FormMethod.Post))
+@using (Html.BeginForm("Create", "ProfessionalDetail", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 <div>
-    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.id)
 
-    <h3> UserName </h3>
-    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Enter your name" })
-    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+    <h3>Employee Code</h3>
+    @Html.TextBoxFor(model => model.EmployeeCode, new { @class = "form-control", placeholder = "Enter Employee Code" })
+    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
 
-    <h3> EmailId </h3>
-    @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", placeholder = "Enter your email address" })
-    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+    <h3>Employee PF No</h3>
+    @Html.TextBoxFor(model => model.EmployeePFNo, new { @class = "form-control", placeholder = "Enter Employee PF No" })
+    @Html.ValidationMessageFor(model => model.EmployeePFNo, "", new { @class = "text-danger" })
 
-    <h3> MobileNo </h3>
-    @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", placeholder = "Enter your mobile number" })
-    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+    <h3>Salary</h3>
+    @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", placeholder = "Enter Salary" })
+    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
 
-    <h3> UniqueCode </h3>
-    @Html.TextBoxFor(model => model.UniqueCode, new { @class = "form-control", placeholder = "Enter your unique code" })
-    @Html.ValidationMessageFor(model => model.UniqueCode, "", new { @class = "text-danger" })
-
-    <h3> Status </h3>
-    @Html.TextBoxFor(model => model.Status, new { @class = "form-control", placeholder = "Enter your status" })
-    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-
-    <h3> Password </h3>
-    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Enter your password" })
-    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    <h3>Marriage Anniversary Date</h3>
+    @Html.TextBoxFor(model => model.MarrigeAnniversaryDate, new { @class = "form-control", type = "date", placeholder = "Select Date" })
+    @Html.ValidationMessageFor(model => model.MarrigeAnniversaryDate, "", new { @class = "text-danger" })
 
 
     <br />
     <input type="submit" value="Submit" class="btn btn-primary" />
 </div>
 }
-
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
 
 }
+
 
