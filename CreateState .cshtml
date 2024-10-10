@@ -1,0 +1,24 @@
+﻿@model Universal_Task.Models.State_Table
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>create</h2>
+
+@using (Html.BeginForm("Create", "State", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.StateId)
+
+    <h3>State Code</h3>
+    @Html.TextBoxFor(m => m.StateCode, new { @required = "required" })
+
+    <h3>State Name</h3>
+    @Html.TextBoxFor(m => m.StateName, new { @required = "required" })
+
+    <input type="submit" value="Submit" />
+
+}
+

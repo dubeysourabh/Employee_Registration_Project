@@ -1,0 +1,26 @@
+﻿@model Universal_Task.Models.City_Table
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "City", FormMethod.Post))
+{
+    <div>
+
+        @Html.HiddenFor(model => model.CityId)
+
+        <h3> City Code </h3>
+        @Html.TextBoxFor(model => model.CityCode)
+
+        <h3> City Name </h3>
+        @Html.TextBoxFor(model => model.CityName)
+
+        <h3>State Name</h3>
+        @Html.DropDownList("StateCode", null, "Select", new { @id = "StateCode", @name = "StateCode" })
+        <br />
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </div>
+}

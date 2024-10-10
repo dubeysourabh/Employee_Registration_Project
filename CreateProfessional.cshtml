@@ -1,0 +1,101 @@
+﻿@model Universal_Task.Models.ProfessionalDetail_Table
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 style="text-align: center;">Create</h2>
+
+<link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+
+<style>
+
+    /* Style the form */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the labels and headings */
+    h3 {
+        font-family: Arial, sans-serif;
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    /* Style the input fields */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0 20px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    /* Style the submit button */
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    /* Add spacing between form elements */
+    div {
+        margin-bottom: 20px;
+    }
+</style>
+
+<p style="text-align: center;">
+    @Html.ActionLink("Go To Index Page", "Index")
+</p>
+@using (Html.BeginForm("Create", "ProfessionalDetail", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div>
+    @Html.HiddenFor(model => model.id)
+
+    <h3>Employee Code</h3>
+    @Html.TextBoxFor(model => model.EmployeeCode, new { @class = "form-control", placeholder = "Enter Employee Code" })
+    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+
+    <h3>Employee PF No</h3>
+    @Html.TextBoxFor(model => model.EmployeePFNo, new { @class = "form-control", placeholder = "Enter Employee PF No" })
+    @Html.ValidationMessageFor(model => model.EmployeePFNo, "", new { @class = "text-danger" })
+
+    <h3>Salary</h3>
+    @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", placeholder = "Enter Salary" })
+    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+
+    <h3>Marriage Anniversary Date</h3>
+    @Html.TextBoxFor(model => model.MarrigeAnniversaryDate, new { @class = "form-control", type = "date", placeholder = "Select Date" })
+    @Html.ValidationMessageFor(model => model.MarrigeAnniversaryDate, "", new { @class = "text-danger" })
+
+
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

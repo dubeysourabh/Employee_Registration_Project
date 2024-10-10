@@ -1,0 +1,143 @@
+﻿@model Universal_Task.Models.Employee_Table
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles for login form and background */
+        body {
+            background-image: url('path/to/your/image.jpg');
+            background-image: url('../../image/aaa.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-control {
+            border-radius: 0.5rem;
+        }
+
+        .btn-login {
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Edit Registration</h3>
+                        @using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                @Html.HiddenFor(m => m.EmpId)
+
+                                <div class="form-group">
+                                    <label for="UserName">Name</label>
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @required = "required" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Address">Address</label>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @required = "required" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="State">State</label>
+                                    @Html.DropDownList("StateCode", null, "Select State", new { @id = "StateCode", @name = "StateCode", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CityId">City</label>
+                                    @Html.DropDownList("CityCode", null, "Select City", new { @id = "CityCode", @name = "CityCode", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="DoB">DoB</label>
+                                    @Html.TextBoxFor(m => m.DoB, new { @class = "form-control", type = "date", @required = "required" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="UniqueCode">Unique Code</label>
+                                    @Html.TextBoxFor(m => m.UniqueCode, new { @class = "form-control", @required = "required" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Date">Date</label>
+                                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", type = "date", @required = "required" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Image">Image</label>
+                                    <input type="file" name="ImageFile" class="form-control" />
+                                    @if (Model.Image != null)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="Employee Image" style="width: 100px; height: 100px;" />
+                                    }
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Password">Password</label>
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @required = "required" })
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mt-3">Register</button>
+                            </div>
+                        }
+                        <div id="errorMessage" class="text-danger mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Custom JavaScript for form submission and error message display -->
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').submit(function (e) {
+                e.preventDefault(); // Prevent form submission
+
+                var formData = $(this).serialize(); // Serialize form data
+                $.post($(this).attr('action'), formData)
+                    .done(function (response) {
+                        // Successful login, redirect or handle as needed
+                        window.location.href = response.redirectUrl;
+                    })
+                    .fail(function (xhr) {
+                        // Login failed, display error message
+                        $('#errorMessage').text(xhr.responseJSON.errorMessage);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
+

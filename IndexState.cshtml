@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Universal_Task.Models.State_Table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>StateCode</th>
+        <th>StateName</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @item.id
+                </td>*@
+
+            <td>
+                @item.StateCode
+            </td>
+
+            <td>
+                @item.StateName
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "edit", new { id = item.StateId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.StateId }, new { @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+    }
+</table>
+
+
+

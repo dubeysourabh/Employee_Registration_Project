@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Universal_Task.Models.Login_Table>
+
+@{
+    ViewBag.Title = "Index";
+}
+<p>
+    @Html.ActionLink("Go To Create Page", "Create")
+</p>
+
+<h2>Login List</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>MobileNo</th>
+            <th>UniqueCode</th>
+            <th>Status</th>
+            @*<th>Password</th>*@
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.UserName
+                </td>
+
+                <td>
+                    @item.EmailId
+                </td>
+
+                <td>
+                    @item.MobileNo
+                </td>
+
+                <td>
+                    @item.UniqueCode
+                </td>
+
+                <td>
+                    @item.Status
+                </td>
+                @*<td>
+                    @item.Password
+                </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "edit", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete?');" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
